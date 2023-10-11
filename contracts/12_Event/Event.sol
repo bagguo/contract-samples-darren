@@ -3,6 +3,11 @@ pragma solidity ^0.8.4;
 
 import "hardhat/console.sol";
 
+/**
+ * Solidity中的event是EVM上日志的抽象，具有两个特点：
+ * 1.响应：应用程序(ether.js)可以通过RPC接口订阅和监听这些事件，并在前端做响应
+ * 1.经济：event是EVM上比较经济的存储数据的方式，每个大概消耗2,000-5,000 gas不等。相比之下，存储一个新的变量至少需要20,000 gas
+ */
 contract Event {
     // 定义_balances映射变量，记录每个地址的持币数量
     mapping(address => uint256) public _balances;
@@ -18,7 +23,8 @@ contract Event {
         _balances[to] += amount; // to地址加上转账数量
 
         console.log("Event _transfer finish");
-        // 释放事件
+        // 释放事件 emit:排放，散发，发行
+        //ethers.js通过RPC接口订阅监听事件
         emit Transfer(from, to, amount);
     }
 }
