@@ -25,11 +25,13 @@ receive()  fallback
     //Solidity特殊的回调函数
 
     //合约接收eth时被触发
+    //必须由external payable修饰
     receive() external payable {
         emit receivedCalled(msg.sender, msg.value);
     }
 
     //在调用合约不存在的函数时被触发。可用于接收ETH，也可以用于代理合约proxy contract。
+    //必须由external修饰，一般也会用payable修饰
     fallback() external payable {
         emit fallbackCalled(msg.sender, msg.value, msg.data);
     }
