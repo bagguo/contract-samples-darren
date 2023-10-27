@@ -245,7 +245,7 @@ contract ERC1155 is IERC165, IERC1155, IERC1155MetadataURI {
 
         address operator = msg.sender;
 
-        for (uint256 i = 0; i < ids.length; i++) 
+        for (uint256 i = 0; i < ids.length; i++) {
             _balances[ids[i]][to] += amounts[i];
         }
 
